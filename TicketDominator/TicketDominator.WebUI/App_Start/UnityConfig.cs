@@ -3,6 +3,7 @@ using TicketDominator.Core.Contracts;
 using TicketDominator.Core.Models;
 using TicketDominator.DataAccess.InMemory;
 using TicketDominator.DataAccess.SQL;
+using TicketDominator.Services;
 using Unity;
 
 namespace TicketDominator.WebUI
@@ -47,6 +48,9 @@ namespace TicketDominator.WebUI
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
+            container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
+            container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
+            container.RegisterType<IBasketService, BasketService>();
         }
     }
 }
