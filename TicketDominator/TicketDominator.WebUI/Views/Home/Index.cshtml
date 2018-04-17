@@ -6,7 +6,14 @@
 
 <h1>Products</h1>
 
-<div class="col-md-2">
+<div class="col-md-3">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
     <h4>Filter by Category</h4>
     <div class="list-group">
         @Html.ActionLink("All", "Index", null, new { @class = Request["Category"] == null ? "list-group-item active" : "list-group-item" })
@@ -17,7 +24,7 @@
     </div>
 </div>
 
-<div class="col-md-10">
+<div class="col-md-9">
     @foreach (var item in Model.Products)
     {
 

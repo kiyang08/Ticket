@@ -19,13 +19,18 @@ namespace TicketDominator.WebUI.Controllers
             context = productContext;
             productCategories = productCategoryContext;
         }
-        public ActionResult Index(string Category=null)
+        public ActionResult Index(string Category=null, string searchString = null)
         {
             List<Product> products;
             List<ProductCategory> categories = productCategories.Collection().ToList();
-            if(Category == null)
+            if (Category == null && searchString == null)
             {
                 products = context.Collection().ToList();
+            }
+            else if (Category == null && !String.IsNullOrEmpty(searchString))
+            {
+                products = context.Collection().Where(s => s.Name.Contains(searchString)).ToList();
+
             }
             else
             {
